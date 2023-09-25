@@ -1,5 +1,5 @@
 (use-package company
-  :ensure
+  :ensure t
   :commands (company-mode)
   :config
   (setq company-idle-delay 0.3)
@@ -53,5 +53,6 @@
   (add-hook 'prog-mode-hook 'yas-minor-mode)
   (add-hook 'text-mode-hook 'yas-minor-mode))
 
+(add-hook 'after-init-hook 'global-company-mode)
 
 (provide 'prelude-company)
