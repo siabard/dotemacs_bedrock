@@ -1,71 +1,41 @@
-(use-package tuareg)
-(use-package utop)
-(use-package eglot)
-(use-package ocamlformat)
-;;(use-package dune)
-(use-package dune-format
-  :ensure
+;; Major mode for OCaml
+(use-package tuareg
+  :ensure t
+  :mode (("\\.ocamlinit\\'" . tuareg-mode)))
+
+;; Major mode for Dune
+(use-package dune
+  :ensure t)
+
+;; Merlin
+(use-package merlin
+  :ensure t
   :config
-  (add-hook 'dune-mode-hook 'dune-format-on-save-mode))
+  (add-hook 'tuareg-mode-hook #'merlin-mode)
+  (add-hook 'merlin-mode-hook #'company-mode)
+  ;; flycheck
+  (setq merlin-error-after-save nil))
 
+(use-package merlin-eldoc
+  :ensure t
+  :hook ((tuareg-mode) . merlin-eldoc-setup))
 
-
-;; Add the opam lisp dir to the emacs load path
-(add-to-list
- 'load-path
- (replace-regexp-in-string
-  "\n" "/share/emacs/site-lisp"
-  (shell-command-to-string "opam var prefix")))
-
-;; Automatically load utop.el
-(autoload 'utop "utop" "Toplevel for OCaml" t)
-
-;; Use the opam installed utop
-(setq utop-command "opam exec -- utop -emacs")
-
-(autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
-(add-hook 'tuareg-mode-hook 'utop-minor-mode)
-
-(add-hook 'tuareg-mode-hook (lambda ()
-  (define-key tuareg-mode-map (kbd "C-M-<tab>") #'ocamlformat)
-  (add-hook 'before-save-hook #'ocamlformat-before-save)))
-
-                                        ; Make company aware of merlin
-(with-eval-after-load 'company
-  (add-to-list 'company-backends 'merlin-company-backend))
-                                        ; Enable company on merlin managed buffers
-(add-hook 'merlin-mode-hook 'company-mode)
-                                        ; Or enable it globally:
-                                        ; (add-hook 'after-init-hook 'global-company-mode)
-
-
-
-(let ((opam-share (ignore-errors (car (process-lines "opam" "var" "share")))))
-  (when (and opam-share (file-directory-p opam-share))
-    ;; Register merlin
-    (add-to-list 'load-path (expand-file-name "emacs/site-lisp" opam-share))
-    (autoload 'merlin-mode "merlin" nil t nil)
-    ;; Automatically start it in OCaml buffers
-    (add-hook 'tuareg-mode-hook 'merlin-mode t)
-    (add-hook 'caml-mode-hook 'merlin-mode t)
-    (add-to-list 'eglot-server-programs '(merlin-mode . ("ocamllsp" "--args")))
-    ;; Use opam switch to lookup ocamlmerlin binary
-    (setq merlin-command 'opam)))
-
-
-(setq auto-mode-alist 
-      (append '(("\\.ml[ily]?$" . tuareg-mode)
-	        ("\\.topml$" . tuareg-mode))
-                  auto-mode-alist))
-
-
-(use-package lsp-mode
+;; use Merlin internally
+(use-package flycheck-ocaml
+  :ensure t
   :config
-  (lsp-register-client
-   (make-lsp-client
-    :new-connection (lsp-stdio-connection
-		     '("opam" "exec" "--" "ocamllsp"))
-    :major-modes '(tuareg-mode merlin-mode caml-mode)
-    :server-id 'ocamllsp)))
+  (flycheck-ocaml-setup))
+
+(defun set-ocaml-error-regexp ()
+  (set
+   'compilation-error-regexp-alist
+   (list '("[Ff]ile \\(\"\\(.*?\\)\", line \\(-?[0-9]+\\)\\(, characters \\(-?[0-9]+\\)-\\([0-9]+\\)\\)?\\)\\(:\n\\(\\(Warning .*?\\)\\|\\(Error\\)\\):\\)?"
+    2 3 (5 . 6) (9 . 11) 1 (8 compilation-message-face)))))
+
+(add-hook 'tuareg-mode-hook 'set-ocaml-error-regexp)
+(add-hook 'caml-mode-hook 'set-ocaml-error-regexp)
+;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; ## end of OPAM user-setup addition for emacs / base ## keep this line
 
 (provide 'prelude-ocaml)
