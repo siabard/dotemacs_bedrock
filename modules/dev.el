@@ -40,6 +40,7 @@
           (typescript-mode . typescript-ts-mode)
           (json-mode . json-ts-mode)
           (css-mode . css-ts-mode)
+	  (rust-mode . rust-ts-mode)
           (python-mode . python-ts-mode)))
   :hook
   ;; Auto parenthesis matching
@@ -97,4 +98,4 @@
   ;; Sometimes you need to tell Eglot where to find the language server
   ; (add-to-list 'eglot-server-programs
   ;              '(haskell-mode . ("haskell-language-server-wrapper" "--lsp")))
-  )
+)

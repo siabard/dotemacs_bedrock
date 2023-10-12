@@ -237,7 +237,7 @@ If the new path's directories does not exist, create them."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(flycheck-ocaml merlin-eldoc merlin dune tuareg company-box company exec-path-from-shell yasnippet-snippets modern-cpp-font-lock org-roam smartparens rainbow-delimiters json-mode yaml-mode magit orderless kind-icon corfu-terminal corfu marginalia vertico embark-consult embark consult avy which-key)))
+   '(clang-format company-box company exec-path-from-shell yasnippet-snippets modern-cpp-font-lock org-roam smartparens rainbow-delimiters json-mode yaml-mode magit orderless kind-icon corfu-terminal corfu marginalia vertico embark-consult embark consult avy which-key)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -281,3 +281,5 @@ If the new path's directories does not exist, create them."
 (load-config-el "modules/prelude-cpp.el")
 
 (load-config-el "modules/prelude-ocaml.el")
+
+(load-config-el "modules/prelude-rust.el")
