@@ -268,6 +268,8 @@ If the new path's directories does not exist, create them."
 
 (load-config-el "modules/dev.el")
 
+(load-config-el "modules/prelude-tree-sitter.el")
+
 (load-config-el "modules/prelude-config.el")
 
 (load-config-el "modules/prelude-korean.el")
@@ -279,3 +281,5 @@ If the new path's directories does not exist, create them."
 (load-config-el "modules/prelude-company.el")
 
 (load-config-el "modules/prelude-ocaml.el")
+
+(load-config-el "modules/prelude-rust.el")
