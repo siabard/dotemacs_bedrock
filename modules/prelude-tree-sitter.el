@@ -9,6 +9,7 @@
   :after tree-sitter)
 
 (use-package treesit-auto
+  :ensure t
   :demand t
   :config
   (global-treesit-auto-mode))
