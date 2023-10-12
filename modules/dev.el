@@ -89,6 +89,8 @@
   ; :hook
   ; (((python-mode ruby-mode elixir-mode) . eglot))
 
+  :hook
+  ((rust-mode) . eglot)
   :custom
   (eglot-send-changes-idle-time 0.1)
 
