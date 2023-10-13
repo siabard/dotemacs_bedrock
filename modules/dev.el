@@ -89,7 +89,13 @@
   ;; Configure hooks to automatically turn-on eglot for selected modes
   ; :hook
   ; (((python-mode ruby-mode elixir-mode) . eglot))
+<<<<<<< HEAD
   :hook ((rust-mode . eglot))
+=======
+
+  :hook
+  ((rust-mode rust-ts-mode) . eglot-ensure)
+>>>>>>> origin/master
   :custom
   (eglot-send-changes-idle-time 0.1)
 
@@ -97,7 +103,7 @@
   (fset #'jsonrpc--log-event #'ignore)  ; massive perf boost---don't log every event
   ;; Sometimes you need to tell Eglot where to find the language server
   (add-to-list 'eglot-server-programs
-               '(rust-mode . ("rust-analyzer" :initializationOptions
+               '((rust-mode rust-ts-mode) . ("rust-analyzer" :initializationOptions
 			      (:procMacro (:enable t)
 					  :cargo (:buildScripts (:enable t)
 								:features "all"))))))
