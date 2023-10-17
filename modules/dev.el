@@ -89,13 +89,8 @@
   ;; Configure hooks to automatically turn-on eglot for selected modes
   ; :hook
   ; (((python-mode ruby-mode elixir-mode) . eglot))
-<<<<<<< HEAD
-  :hook ((rust-mode . eglot))
-=======
-
   :hook
   ((rust-mode rust-ts-mode) . eglot-ensure)
->>>>>>> origin/master
   :custom
   (eglot-send-changes-idle-time 0.1)
 

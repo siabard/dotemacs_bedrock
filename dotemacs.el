@@ -276,6 +276,8 @@ If the new path's directories does not exist, create them."
 
 (load-config-el "modules/prelude-korean.el")
 
+(load-config-el "modules/prelude-flycheck.el")
+
 (load-config-el "modules/prelude-lang.el")
 
 (load-config-el "modules/prelude-lsp.el")
