@@ -13,8 +13,9 @@
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs '((c++-mode c-mode c-or-c++-mode) .
 					( "clangd"
-					  "-j=8"
-					  "--log=error"
+					  "-std=c++17"
+					  "--log=verbose"
+					  "--enable-config"
 					  "--background-index"
 					  "--clang-tidy"
 					  "--cross-file-rename"
