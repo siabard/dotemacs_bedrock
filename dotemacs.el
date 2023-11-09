@@ -255,8 +255,6 @@ If the new path's directories does not exist, create them."
 			    ((eq system-type 'darwin) "~/doc/emacs/modules")
 			    ((eq system-type 'windows-nt) "d:/doc/emacs/modules")))
 
-(add-to-list 'load-path prelude-modules-dir)
-
 (defun load-config-el (fname)
   (let ((el-file-path (cond ((eq system-type 'gnu/linux) "~/doc/emacs")
 			    ((eq system-type 'darwin) "~/doc/emacs")
@@ -267,6 +265,8 @@ If the new path's directories does not exist, create them."
 (load-config-el "modules/base.el")
 
 (load-config-el "modules/dev.el")
+
+(load-config-el "modules/org.el")
 
 (load-config-el "modules/prelude-default.el")
 
