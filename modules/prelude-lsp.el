@@ -13,7 +13,7 @@
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs '((c++-mode c-mode c-or-c++-mode) .
 					( "clangd"
-					  "-std=c++17"
+					  ;;;; "-std=c++17"
 					  "--log=verbose"
 					  "--enable-config"
 					  "--background-index"

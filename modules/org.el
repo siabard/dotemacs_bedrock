@@ -41,7 +41,7 @@
 ;;; Phase 2 variables
 
 ;; Agenda variables
-(setq org-directory "~/Documents/org/") ; Non-absolute paths for agenda and
+(setq org-directory "~/doc/org/") ; Non-absolute paths for agenda and
                                         ; capture templates will look here.
 
 (setq org-agenda-files '("inbox.org" "work.org"))
@@ -72,8 +72,8 @@
 ;;; Phase 3 variables
 
 ;; Org-roam variables
-(setq org-roam-directory "~/Documents/org-roam/")
-(setq org-roam-index-file "~/Documents/org-roam/index.org")
+(setq org-roam-directory "~/doc/org-roam/")
+(setq org-roam-index-file "~/doc/org-roam/index.org")
 
 ;;; Optional variables
 
@@ -155,6 +155,11 @@
 
 (use-package org-roam
   :ensure t
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+	 ("C-c n f" . org-roam-node-find)
+	 ("C-c n i" . org-roam-node-insert)
+	 :map org-mode-map
+	 ("C-M-i" . completion-at-point))
   :config
   (org-roam-db-autosync-mode)
   ;; Dedicated side window for backlinks

@@ -13,7 +13,7 @@
 								(list (expand-file-name "/usr/local/include")
 								      (expand-file-name "/opt/local/include")
 								      ;; (expand-file-name "/usr/include")
-								      (expand-file-name "/usr/local/opt/llvm/include/c++/v1"))))))
+								      )))))
   )
 
 (flymake-mode -1)
