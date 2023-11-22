@@ -190,7 +190,8 @@ If the new path's directories does not exist, create them."
 
 (use-package emacs
   :config
-  (load-theme 'modus-vivendi))          ; for light theme, use modus-operandi
+  (add-to-list 'custom-theme-load-path "~/doc/emacs/themes/")
+  (load-theme 'zenburn t))          ; for light theme, use modus-operandi
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
