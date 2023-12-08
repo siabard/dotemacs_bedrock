@@ -287,6 +287,8 @@ If the new path's directories does not exist, create them."
 
 (load-config-el "modules/prelude-cpp.el")
 
+(load-config-el "modules/prelude-dart.el")
+
 (load-config-el "modules/prelude-ocaml.el")
 
 (load-config-el "modules/prelude-rust.el")
