@@ -102,3 +102,15 @@
 			      (:procMacro (:enable t)
 					  :cargo (:buildScripts (:enable t)
 								:features "all"))))))
+
+
+;;;; paredit / rainbow-delimeter
+(use-package paredit
+  :hook
+  ((common-lisp-mode . ensure-paredit-mode)
+   (lisp-mode-hook . ensure-paredit-mode)))
+
+(use-package rainbow-delimiters
+  :ensure t
+  :hook
+  ((prog-mode . rainbow-delimiters-mode)))
