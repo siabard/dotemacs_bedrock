@@ -18,4 +18,10 @@
 
 (flymake-mode -1)
 
+(use-package flycheck-rust
+  :ensure t
+  :hook (	 (flycheck-mode . flycheck-rust-setup))
+  )
+
+
 (provide 'prelude-flycheck)
