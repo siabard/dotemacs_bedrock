@@ -14,7 +14,7 @@
 (add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
 
 ;; hyper spec
-(load "/home/siabard/quicklisp/clhs-use-local.el" t)
+;; (load (expand-file-name "~/quicklisp/clhs-use-local.el"))
 ;; (setq common-lisp-hyperspec-root
 ;;      (concat "file://" (expand-file-name "~/doc/common-lisp/HyperSpec/")))
 
