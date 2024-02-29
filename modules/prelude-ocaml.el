@@ -10,15 +10,19 @@
 ;; Merlin
 (use-package merlin
   :ensure t
-  :config
-  (add-hook 'tuareg-mode-hook #'merlin-mode)
-  (add-hook 'merlin-mode-hook #'company-mode)
+  :hook ((tuareg-mode . merlin-mode)
+	 (caml-mode . merlin-mode)
+	 (merlin-mode . company-mode))
   ;; flycheck
-  (setq merlin-error-after-save nil))
+  :config
+  (setq merlin-ac-setup 'easy)
+  (setq merlin-error-after-save nil)
+  (with-eval-after-load 'company
+    (add-to-list 'company-backends 'merlin-company-backend)))
 
 (use-package merlin-eldoc
   :ensure t
-  :hook ((tuareg-mode) . merlin-eldoc-setup))
+  :hook ((tuareg-mode . merlin-eldoc-setup)))
 
 ;; use Merlin internally
 (use-package flycheck-ocaml
