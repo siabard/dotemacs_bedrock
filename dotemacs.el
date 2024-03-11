@@ -283,6 +283,8 @@ If the new path's directories does not exist, create them."
 
 (load-config-el "modules/prelude-lsp.el")
 
+(load-config-el "modules/prelude-reformatter.el")
+
 (load-config-el "modules/prelude-company.el")
 
 (load-config-el "modules/prelude-cpp.el")
